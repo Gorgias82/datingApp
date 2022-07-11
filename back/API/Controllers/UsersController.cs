@@ -1,5 +1,6 @@
 ﻿using API.Data;
 using API.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,10 +13,10 @@ namespace API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class UserController : ControllerBase
+    public class UsersController : ControllerBase
     {
         private readonly DataContext _context;
-        public UserController(DataContext context)
+        public UsersController(DataContext context)
         {
             _context = context;
         }
@@ -23,6 +24,7 @@ namespace API.Controllers
         //List tiene mas metodos que no necesitamos
         //asi que usamos inumerable
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
         {
             return await _context.Users.ToListAsync();
@@ -33,6 +35,7 @@ namespace API.Controllers
         //direcmente se pondria el dato al hacer el get en el service de angular
         //es decir clasico seria api/users?id=3
         //y  asi seria: api/users/3
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<AppUser> GetUsers(int id)
         {

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\www\\datingApp\\API\\API\\API.csproj": {}
+    "C:\\www\\datingApp\\back\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\www\\datingApp\\API\\API\\API.csproj": {
+    "C:\\www\\datingApp\\back\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\www\\datingApp\\API\\API\\API.csproj",
+        "projectUniqueName": "C:\\www\\datingApp\\back\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\www\\datingApp\\API\\API\\API.csproj",
+        "projectPath": "C:\\www\\datingApp\\back\\API\\API.csproj",
         "packagesPath": "C:\\Users\\jorge.vicente\\.nuget\\packages\\",
-        "outputPath": "C:\\www\\datingApp\\API\\API\\obj\\",
+        "outputPath": "C:\\www\\datingApp\\back\\API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
@@ -49,6 +49,10 @@
               "target": "Package",
               "version": "[6.4.4, )"
             },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.0, )"
@@ -66,6 +70,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.21.0, )"
             }
           },
           "imports": [
