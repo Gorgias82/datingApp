@@ -29,7 +29,7 @@ namespace API.Controllers
 
 
         //puedes poner en parametros [FromBody]
-        //pero al tener el decorador apicontroller
+        //pero al tener el decorador apicontroller y poner httppost
         //ya lo interpreta al ser un post y no hace falta ponerlo
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
@@ -43,6 +43,8 @@ namespace API.Controllers
             //al terminar con la clase
             using var hmac = new HMACSHA512();
 
+            //crea el usuario, codificando su password
+            // y usando la key como salt
             var user = new AppUser
             {
                 UserName = registerDto.Username,
@@ -51,6 +53,7 @@ namespace API.Controllers
 
             };
 
+            //aqui guarda el usuario en la base de datos
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
@@ -60,9 +63,14 @@ namespace API.Controllers
                 Token = _tokenService.CreateToken(user)
             };
         }
+
+        //recibe como argumento un loginDto
+        //que solo tiene el nombre de usuario
+        // y la contraseña en claro
         [HttpPost("login")]
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
+            //extrae el usuario de la base de datos cuyo nombre coincide con el que recibe
             var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == loginDto.Username);
 
             if (user == null)
