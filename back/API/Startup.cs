@@ -20,6 +20,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using API.Extensions;
+using API.Middleware;
 
 namespace API
 {
@@ -52,10 +53,14 @@ namespace API
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
 
+            //usa el middleware para gestionar las exceptions
+            //que hemos creado en la carpeta Middleware
+            app.UseMiddleware<ExceptionMiddleware>();
+
             //Configuracion de los middleware en los http requests
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
             }
