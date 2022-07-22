@@ -140,3 +140,10 @@ C:\www\datingApp\back\API\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
 C:\www\datingApp\back\API\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\www\datingApp\back\API\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
 C:\www\datingApp\back\API\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\www\datingApp\back\API\bin\Debug\net5.0\Data\UserSeedData.json
+C:\www\datingApp\back\API\bin\Debug\net5.0\AutoMapper.dll
+C:\www\datingApp\back\API\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\www\datingApp\back\API\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\www\datingApp\back\API\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
+C:\www\datingApp\back\API\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+C:\www\datingApp\back\API\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll

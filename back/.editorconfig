@@ -2,3 +2,6 @@
 
 # IDE0005: El uso de la directiva no es necesario.
 dotnet_diagnostic.IDE0005.severity = suggestion
+
+# CA1051: No declarar campos de instancia visibles
+dotnet_diagnostic.CA1051.severity = none
