@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import {map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
 
-  baseUrl : string = 'https://localhost:5001/api/';
+  baseUrl : string = environment.apiUrl;
   //replaysubject es un tipo de Observable
   //actua como un bufer guarda el ultimo tipo de valor
   //indicado al que haya habido una subscripcion
