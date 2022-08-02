@@ -20,6 +20,9 @@ import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
 
 
 @NgModule({
@@ -35,7 +38,8 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     TestErrorsComponent,
     NotFoundComponent,
     ServerErrorComponent,
-    MemberCardComponent
+    MemberCardComponent,
+    MemberEditComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +47,8 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    NgxSpinnerModule
   
   ],
   providers: [
@@ -51,6 +56,7 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     //Angular, si se quiere sustituir se ponde multi en false
     {provide : HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     {provide : HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide : HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })
