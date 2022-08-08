@@ -2,6 +2,7 @@
 using API.DTOs;
 using API.Entities;
 using API.Interfaces;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -20,11 +21,12 @@ namespace API.Controllers
         private readonly DataContext _context;
 
         private readonly ITokenService _tokenService;
-
-        public AccountController(DataContext context, ITokenService tokenService)
+        private readonly IMapper _mapper;
+        public AccountController(DataContext context, ITokenService tokenService, IMapper mapper)
         {
             _context = context;
             _tokenService = tokenService;
+            _mapper = mapper;
         }
 
 
@@ -38,6 +40,8 @@ namespace API.Controllers
             if (await UserExists(registerDto.Username))
                 return BadRequest("Username is taken");
 
+            var user = _mapper.Map<AppUser>(registerDto);
+
             //se usa using para que la clase creada
             //aplique el metodo dispose(que implementa de la interface IDisposable)
             //al terminar con la clase
@@ -45,13 +49,12 @@ namespace API.Controllers
 
             //crea el usuario, codificando su password
             // y usando la key como salt
-            var user = new AppUser
-            {
-                UserName = registerDto.Username,
-                PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
-                PasswordSalt = hmac.Key
 
-            };
+            user.UserName = registerDto.Username.ToLower();
+            user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password));
+            user.PasswordSalt = hmac.Key;
+
+            
 
             //aqui guarda el usuario en la base de datos
             _context.Users.Add(user);
@@ -60,7 +63,8 @@ namespace API.Controllers
             return new UserDto
             {
                 UserName = user.UserName,
-                Token = _tokenService.CreateToken(user)
+                Token = _tokenService.CreateToken(user),
+                KnownAs = user.KnownAs
        
             };
         }
@@ -85,16 +89,17 @@ namespace API.Controllers
             {
                 if (computedHash[i] != user.PasswordHash[i])
                     return Unauthorized("Invalid password");
-            }
+            };
 
+  
          
-            return new UserDto
+            return  Ok(new UserDto
             {
                 UserName = user.UserName,
                 Token = _tokenService.CreateToken(user),
-                PhotoUrl = user.Photos.FirstOrDefault(p => p.IsMain).Url
-
-              };
+                PhotoUrl = user.Photos.Count <= 0 ? "" : user.Photos.FirstOrDefault(p => p.IsMain).Url,
+                KnownAs = user.KnownAs
+             });
         }
 
         private async Task<bool> UserExists(string username)

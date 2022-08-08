@@ -81,6 +81,7 @@ namespace API.Controllers
         [HttpPost("add-photo")]
         public async Task<ActionResult<PhotoDto>> AddPhoto(IFormFile file)
         {
+            //usa el extension method de claimsprinciple para obtener el nombre de usuario
             var user = await _userRepository.GetUserByUsernameAsync(User.GetUserName());
 
             var result = await _photoService.AddPhotoAsync(file);

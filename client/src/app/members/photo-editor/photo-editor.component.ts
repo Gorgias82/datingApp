@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { take } from 'rxjs/operators';
 import { MembersService } from 'src/app/services/members.service';
 import { Photo } from 'src/app/models/photo';
+import { BasePortalHost } from 'ngx-toastr';
 @Component({
   selector: 'app-photo-editor',
   templateUrl: './photo-editor.component.html',
@@ -70,9 +71,13 @@ export class PhotoEditorComponent implements OnInit {
     this.uploader.onSuccessItem = (item, response, status, headers) => {
       if(response){
       
-        const photo = JSON.parse(response);
+        const photo : Photo = JSON.parse(response);
         this.member.photos.push(photo);
-        console.log(this.member.photos);
+        if(photo.isMain){
+          this.user.photoUrl = photo.url;
+          this.member.photoUrl = photo.url;
+          this.accountService.setCurrentUser(this.user);
+        }
       }
     }
   }
