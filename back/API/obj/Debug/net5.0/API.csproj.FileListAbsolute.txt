@@ -147,3 +147,5 @@ C:\www\datingApp\back\API\bin\Debug\net5.0\Microsoft.Extensions.DependencyInject
 C:\www\datingApp\back\API\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
 C:\www\datingApp\back\API\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
 C:\www\datingApp\back\API\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
+C:\www\datingApp\back\API\bin\Debug\net5.0\CloudinaryDotNet.dll
+C:\www\datingApp\back\API\bin\Debug\net5.0\Newtonsoft.Json.dll
