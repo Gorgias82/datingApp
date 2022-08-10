@@ -22,6 +22,8 @@ namespace API.Extensions
             services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
             //se añade la interface y la clase que se encarga de crear los JWT tokens
             services.AddScoped<ITokenService, TokenService>();
+            //se añade el helper loguseractivity
+            services.AddScoped<LogUserActivity>();
             //se añade la interface y la clase que se encarga de gestionar el servicio de fotos de cloudinary
             services.AddScoped<IPhotoService, PhotoService>();
             //añade el repositorio que usamos como intermidario entre en dbcontext y los controllers
