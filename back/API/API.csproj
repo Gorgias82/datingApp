@@ -5,6 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Migrations\20220818113032_LikeEntityAdded.cs" />
+    <Compile Remove="Data\Migrations\20220818113032_LikeEntityAdded.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="datingapp.db" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 
