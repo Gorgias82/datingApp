@@ -72,7 +72,6 @@ C:\www\datingApp\back\API\bin\Debug\net5.0\API.deps.json
 C:\www\datingApp\back\API\bin\Debug\net5.0\API.runtimeconfig.json
 C:\www\datingApp\back\API\bin\Debug\net5.0\API.runtimeconfig.dev.json
 C:\www\datingApp\back\API\bin\Debug\net5.0\API.dll
-C:\www\datingApp\back\API\bin\Debug\net5.0\ref\API.dll
 C:\www\datingApp\back\API\bin\Debug\net5.0\API.pdb
 C:\www\datingApp\back\API\bin\Debug\net5.0\EntityFramework.SqlServer.dll
 C:\www\datingApp\back\API\bin\Debug\net5.0\EntityFramework.dll
@@ -124,7 +123,6 @@ C:\www\datingApp\back\API\obj\Debug\net5.0\API.csproj.CoreCompileInputs.cache
 C:\www\datingApp\back\API\obj\Debug\net5.0\API.MvcApplicationPartsAssemblyInfo.cs
 C:\www\datingApp\back\API\obj\Debug\net5.0\API.MvcApplicationPartsAssemblyInfo.cache
 C:\www\datingApp\back\API\obj\Debug\net5.0\staticwebassets\API.StaticWebAssets.Manifest.cache
-C:\www\datingApp\back\API\obj\Debug\net5.0\staticwebassets\API.StaticWebAssets.xml
 C:\www\datingApp\back\API\obj\Debug\net5.0\scopedcss\bundle\API.styles.css
 C:\www\datingApp\back\API\obj\Debug\net5.0\API.RazorTargetAssemblyInfo.cache
 C:\www\datingApp\back\API\obj\Debug\net5.0\API.csproj.CopyComplete
@@ -149,3 +147,9 @@ C:\www\datingApp\back\API\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
 C:\www\datingApp\back\API\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
 C:\www\datingApp\back\API\bin\Debug\net5.0\CloudinaryDotNet.dll
 C:\www\datingApp\back\API\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\www\datingApp\back\API\obj\Debug\net5.0\refint\API.dll
+C:\www\datingApp\back\API\obj\Debug\net5.0\staticwebassets\API.StaticWebAssets.Pack.cache
+C:\www\datingApp\back\API\obj\Debug\net5.0\staticwebassets\msbuild.API.Microsoft.AspNetCore.StaticWebAssets.props
+C:\www\datingApp\back\API\obj\Debug\net5.0\staticwebassets\msbuild.build.API.props
+C:\www\datingApp\back\API\obj\Debug\net5.0\staticwebassets\msbuild.buildMultiTargeting.API.props
+C:\www\datingApp\back\API\obj\Debug\net5.0\staticwebassets\msbuild.buildTransitive.API.props
