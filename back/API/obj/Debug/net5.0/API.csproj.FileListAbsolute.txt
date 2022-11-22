@@ -153,3 +153,6 @@ C:\www\datingApp\back\API\obj\Debug\net5.0\staticwebassets\msbuild.API.Microsoft
 C:\www\datingApp\back\API\obj\Debug\net5.0\staticwebassets\msbuild.build.API.props
 C:\www\datingApp\back\API\obj\Debug\net5.0\staticwebassets\msbuild.buildMultiTargeting.API.props
 C:\www\datingApp\back\API\obj\Debug\net5.0\staticwebassets\msbuild.buildTransitive.API.props
+C:\www\datingApp\back\API\bin\Debug\net5.0\Microsoft.AspNet.Identity.Core.dll
+C:\www\datingApp\back\API\bin\Debug\net5.0\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\www\datingApp\back\API\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll

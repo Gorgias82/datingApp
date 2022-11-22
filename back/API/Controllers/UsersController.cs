@@ -1,4 +1,4 @@
-﻿using API.Data;
+using API.Data;
 using API.DTOs;
 using API.Entities;
 using API.Extensions;
@@ -33,6 +33,7 @@ namespace API.Controllers
             _photoService = photoService;
         }
 
+
         //List tiene mas metodos que no necesitamos
         //asi que usamos inumerable
         [HttpGet]
@@ -57,6 +58,8 @@ namespace API.Controllers
 
         }
 
+
+      
         //en vez de pasar una query clasica
         //directamente se pondria el dato al hacer el get en el service de angular
         //es decir clasico seria api/users?username=dave

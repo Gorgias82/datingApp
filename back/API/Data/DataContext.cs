@@ -1,22 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Sqlite;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 
 namespace API.Data
 {
-    public  class DataContext : DbContext
+  //si no se usan roles bastaria la primera linea
+  public  class DataContext : IdentityDbContext<AppUser, AppRole, int,
+      IdentityUserClaim<int>, AppUserRole, IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<int>>
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
 
         }
 
-        public DbSet<AppUser> Users { get; set; }
+
         public DbSet<UserLike> Likes { get; set; }
 
         public DbSet<Message> Messages { get; set; }
@@ -26,9 +25,23 @@ namespace API.Data
         {
             base.OnModelCreating(builder);
 
+
+            builder.Entity<AppUser>()
+              .HasMany(ur => ur.UserRoles)
+              .WithOne(u => u.User)
+              .HasForeignKey(ur => ur.UserId)
+              .IsRequired();
+
+            builder.Entity<AppRole>()
+                    .HasMany(ur => ur.UserRoles)
+                    .WithOne(u => u.Role)
+                    .HasForeignKey(ur => ur.RoleId)
+                    .IsRequired();
+
+
             //la primary key sera la combinacion de ambas id del usuario que le da like y el que lo recibe
             builder.Entity<UserLike>()
-                .HasKey(k => new { k.SourceUserId, k.LikedUserId });
+                      .HasKey(k => new { k.SourceUserId, k.LikedUserId });
 
 
             //si se usa sqlServer seria deleteBehavior.NoAction
