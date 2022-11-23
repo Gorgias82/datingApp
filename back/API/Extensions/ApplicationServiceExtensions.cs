@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using API.Data;
 using API.Helpers;
 using API.Interfaces;
@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using API.SignalR;
 
 namespace API.Extensions
 {
@@ -32,6 +32,10 @@ namespace API.Extensions
             services.AddScoped<IPhotoService, PhotoService>();
             //añade el repositorio que usamos como intermidario entre en dbcontext y los controllers
             services.AddScoped<IUserRepository, UserRepository>();
+            //añade los servicios para las online presences
+            services.AddSignalR();
+            //este servicio se queda vivo por eso se añade asi y no como scoped
+            services.AddSingleton<PresenceTracker>();
 
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 

@@ -19,9 +19,12 @@ namespace API.Data
         public DbSet<UserLike> Likes { get; set; }
 
         public DbSet<Message> Messages { get; set; }
+        public DbSet<Group> Groups { get; set; }
+        public DbSet<Connection> Connections { get; set; }
 
-        //este metodo se usa para las migrations
-        protected override void OnModelCreating(ModelBuilder builder)
+
+    //este metodo se usa para las migrations
+    protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 

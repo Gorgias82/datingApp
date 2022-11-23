@@ -21,6 +21,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using API.Extensions;
 using API.Middleware;
+using API.SignalR;
 
 namespace API
 {
@@ -44,9 +45,23 @@ namespace API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
             });
-            services.AddCors();
+            services.AddCors(options =>
+            {
+              options.AddPolicy("AllowAllHeaders",
+                  builder =>
+                  {
+                    builder
+                     .WithOrigins("http://localhost:4200")
+                     .AllowAnyHeader()
+                     .AllowAnyMethod()
+                     .AllowCredentials();
+                  });
+            });
             //llama al extension method de identityserviceextensions
             services.AddIdentityServices(_config);
+
+            //llama al signalR para las online presences
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,7 +85,8 @@ namespace API
             app.UseRouting();
 
             //tiene que estas aqui entre use routing y use authorization
-            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
+            app.UseCors("AllowAllHeaders");
+
 
             app.UseAuthentication();
 
@@ -79,6 +95,11 @@ namespace API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+
+                //esto es por el presenceHub, esta ruta se usa en identityserviceextensions
+                endpoints.MapHub<PresenceHub>("hubs/presence");
+                endpoints.MapHub<MessageHub>("hubs/message");
+
             });
         }
     }
