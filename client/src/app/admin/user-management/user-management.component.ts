@@ -43,7 +43,7 @@ export class UserManagementComponent implements OnInit {
       }
       //si hay alguno checkeado llama al service para hacer el update correspondiente
       if(rolesToUpdate) {
-        this.adminService.updateUserRoles(user.username, rolesToUpdate.roles).subscribe(() => {
+        this.adminService.updateUserRoles(user.userName, rolesToUpdate.roles).subscribe(() => {
           user.roles = [...rolesToUpdate.roles]
         })
       }

@@ -18,29 +18,28 @@ namespace API.Extensions
     {
         public static IServiceCollection AddAplicationServices(this IServiceCollection services, IConfiguration config)
         {
-            //se añaden los parametros de configuracion de cloudinary usando el appsettings.json y la clase cloudinarySettings
-            services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
             //se añade la interface y la clase que se encarga de crear los JWT tokens
             services.AddScoped<ITokenService, TokenService>();
-            //se añade el repositorio y su interface que gestiona los likes
-            services.AddScoped<ILikesRepository, LikesRepository>();
-            //se añade el repositorio y su interface que gestiona los mensajes
-            services.AddScoped<IMessageRepository, MessageRepository>();
-            //se añade el helper loguseractivity
-            services.AddScoped<LogUserActivity>();
+            //se añaden los parametros de configuracion de cloudinary usando el appsettings.json y la clase cloudinarySettings
+            services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
             //se añade la interface y la clase que se encarga de gestionar el servicio de fotos de cloudinary
-            services.AddScoped<IPhotoService, PhotoService>();
-            //añade el repositorio que usamos como intermidario entre en dbcontext y los controllers
-            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IPhotoService, PhotoService>();       
+            //se añade el helper loguseractivity
+            services.AddScoped<LogUserActivity>();         
             //añade los servicios para las online presences
             services.AddSignalR();
             //este servicio se queda vivo por eso se añade asi y no como scoped
             services.AddSingleton<PresenceTracker>();
-
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
-            //se añade el context
-            services.AddDbContext<DataContext>(options =>
+            //esta interface y servicio sustituye a los repositorios
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+
+
+
+      //se añade el context
+      services.AddDbContext<DataContext>(options =>
             {
                 //toma los datos de appsettings.json
                 options.UseSqlite(config.GetConnectionString("DefaultConnection"));

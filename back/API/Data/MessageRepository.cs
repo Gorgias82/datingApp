@@ -94,19 +94,19 @@ namespace API.Data
         public async Task<IEnumerable<MessageDto>> GetMessageThread(string currentUsername, string recipientUsername)
         {
 
-          //incluye al enitity appUser sender y recipiento que a su vez tienen una list del  entity Photo
-          var messages = await _context.Messages
-              .Include(u => u.Sender).ThenInclude(p => p.Photos)
-              .Include(u => u.Recipient).ThenInclude(p => p.Photos)
-              .Where(m => m.Recipient.UserName == currentUsername && m.RecipientDeleted == false
-                    && m.Sender.UserName == recipientUsername
-                    || m.Recipient.UserName == recipientUsername
-                    && m.Sender.UserName == currentUsername && m.SenderDeleted == false
-              )
-              .OrderBy(m => m.MessageSent)
-              .ToListAsync();
+      //incluye al enitity appUser sender y recipiento que a su vez tienen una list del  entity Photo
+      var query = _context.Messages
 
-          var unreadMessages = messages.Where(m => m.DateRead == null
+          .Where(m => m.Recipient.UserName == currentUsername && m.RecipientDeleted == false
+                && m.Sender.UserName == recipientUsername
+                || m.Recipient.UserName == recipientUsername
+                && m.Sender.UserName == currentUsername && m.SenderDeleted == false
+          )
+          .OrderBy(m => m.MessageSent)
+          .AsQueryable();
+              
+
+          var unreadMessages = query.Where(m => m.DateRead == null
           && m.Recipient.UserName == currentUsername).ToList();
 
           if ( unreadMessages.Any())
@@ -115,10 +115,10 @@ namespace API.Data
             {
               message.DateRead = DateTime.Now;
             }
-              await _context.SaveChangesAsync();
+              //await _context.SaveChangesAsync();
           }
 
-          return _mapper.Map<IEnumerable<MessageDto>>(messages);
+          return await query.ProjectTo<MessageDto>(_mapper.ConfigurationProvider).ToListAsync();
 
         }
 
@@ -127,9 +127,6 @@ namespace API.Data
       _context.Connections.Remove(connection);
     }
 
-    public async Task<bool> SaveAllAsync()
-        {
-            return await _context.SaveChangesAsync() > 0;
-        }
+   
     }
 }

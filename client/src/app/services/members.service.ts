@@ -71,6 +71,7 @@ export class MembersService {
  
 
   getMember(username : string){
+    console.log(username)
     //Primero transforma el map del memberCache
     //en una array de sus valores que seran los paginatedResults
     //les aplica reduce  con concat al previous value concatenando 
